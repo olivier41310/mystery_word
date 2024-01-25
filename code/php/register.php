@@ -3,39 +3,38 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <?php
-// Assurez-vous de mettre les informations de connexion correctes
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "mystery_world";
 
-// Créer une connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
+	$servername = "localhost";
+	$username = "root";
+	$password = "root";
+	$dbname = "mystery_world";
 
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
-// Vérifier si le formulaire a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $first_name = isset($_POST["name"]) ? $_POST["name"] : "";
-    $last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
-    $email = isset($_POST["email"]) ? $_POST["email"] : "";
-    $password = isset($_POST["password"]) ? password_hash($_POST["password"], PASSWORD_DEFAULT) : "";
+	$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Préparer et exécuter la requête SQL
-    $sql = "INSERT INTO User (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Inscription réussie!";
-    } else {
-        echo "Erreur d'inscription: " . $conn->error;
-    }
-}
 
-// Fermer la connexion à la base de données
-$conn->close();
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		
+		$first_name = isset($_POST["name"]) ? $_POST["name"] : "";
+		$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : "";
+		$email = isset($_POST["email"]) ? $_POST["email"] : "";
+		$password = isset($_POST["password"]) ? password_hash($_POST["password"], PASSWORD_DEFAULT) : "";
+
+		
+		$sql = "INSERT INTO User (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
+		if ($conn->query($sql) === TRUE) {
+			echo "Inscription réussie!";
+		} else {
+			echo "Erreur d'inscription: " . $conn->error;
+		}
+	}
+
+
+	$conn->close();
 ?>
 
 

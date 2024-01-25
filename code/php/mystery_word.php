@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 }
 
 // Requête SQL pour récupérer le mot mystère
-$sql = "SELECT world FROM mystery_world WHERE id_mystery_world = 1"; // Assurez-vous que l'id_mystery_world correspond à votre mot mystère
+$sql = "SELECT world FROM mystery_world WHERE id_mystery_world = 1"; 
 
 $result = $conn->query($sql);
 
